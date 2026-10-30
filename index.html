@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Milo McGivern | Tales from Animaux</title>
+<meta name="description" content="Milo McGivern writes the Tales from Animaux for 8 to 12 year olds: Aubrey the Turkey, Clifford Platypus and Walli Hog, illustrated by Yuliya Somina.">
+<meta property="og:title" content="A homepage for Milo McGivern, made by Sparsh Saini">
+<meta property="og:description" content="A homepage idea for Milo McGivern and the Tales from Animaux, made by Sparsh Saini. Not his official site.">
+<meta property="og:image" content="https://sparshsainied-prog.github.io/milomcgivern/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23eab2bd'/><text x='16' y='24' font-size='20' text-anchor='middle' font-family='Georgia' font-weight='bold'>6</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/plate.webp">
+<style>
+/* From the Tales from Animaux covers (Yuliya Somina): white paper, black brush ink, flat colour per book
+   (sea blue, custard yellow, party pink, pea green, midnight navy), Milo's name in raspberry brush,
+   the hand-lettered titles (Caveat Brush) and the spaced bold serif of "Tales from Animaux" (Libre Baskerville). */
+:root {
+  --paper: #fff;
+  --ink: #141414;
+  --rasp: #d9416a;
+  --b1: #1589b0; --b2: #f2dc86; --b3: #eab2bd; --b4: #acc88d; --b5: #2b3d53;
+  --soft: #4b4b4b;
+  --hand: "Caveat Brush", "Comic Sans MS", cursive;
+  --text: "Libre Baskerville", Georgia, serif;
+  --gut: clamp(1rem, 5vw, 4rem);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--text); font-size: 1.05rem; line-height: 1.65; overflow-x: hidden; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--rasp); outline-offset: 3px; }
+h2, h3 { font-family: var(--hand); font-weight: 400; line-height: 1; margin: 0; }
+.strip { position: relative; z-index: 30; background: var(--ink); color: #fff; font-size: .85rem; text-align: center; padding: .5rem var(--gut); }
+
+/* the series rule from the covers, as the nav: Tales from Animaux, numbers 1 to 6 */
+.rule { position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,.96); border-top: 1px solid #ddd; padding: .35rem .6rem .45rem; text-align: center; transform: translateY(110%); transition: transform .3s; }
+.rule.on { transform: none; }
+.rule .t { font-weight: 700; font-size: .72rem; letter-spacing: .32em; border-bottom: 2px solid var(--ink); display: inline-block; padding: 0 .4rem .1rem; }
+.rule nav { display: flex; justify-content: center; gap: .15rem; margin-top: .15rem; }
+.rule a { font-weight: 700; font-size: .95rem; text-decoration: none; min-width: 2.3rem; padding: .15rem .3rem; border-radius: 3px; }
+.rule a.d { font-family: var(--hand); font-weight: 400; font-size: 1.2rem; line-height: 1.1; }
+@media (min-width: 900px) { .rule { top: 0; bottom: auto; border-top: 0; border-bottom: 1px solid #ddd; transform: translateY(-110%); } }
+
+/* ---------- who's there? ---------- */
+.hero { position: relative; height: 320vh; }
+.stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--paper); }
+.frame { position: absolute; left: 50%; top: 6px; width: min(100vw, calc((100svh - 150px) * .645)); transform: translateX(-50%); }
+.art { position: relative; aspect-ratio: 1556 / 2413; width: 100%; }
+.art img { position: absolute; }
+.plate { left: 0; top: 0; width: 100%; z-index: 2; }
+.neck { position: absolute; left: 43.702%; top: 30%; width: 22.494%; height: 37.136%; overflow: hidden; z-index: 1; }
+.aubrey { left: 0; bottom: 0; width: 100%; will-change: transform; transform-origin: 50% 100%; }
+.write { position: absolute; left: 16.067%; top: 23.208%; width: 68.766%; height: 9.946%; overflow: hidden; z-index: 3; }
+.write .in { position: absolute; inset: 0; will-change: transform; }
+.title { left: 0; top: 0; width: 100%; height: 100%; }
+.cap { position: absolute; left: var(--gut); right: var(--gut); bottom: 16px; height: 128px; text-align: center; }
+.cap p { position: absolute; left: 0; right: 0; top: 0; margin: 0; will-change: opacity; }
+.cap .q { font-family: var(--hand); font-size: 1.75rem; line-height: 1.1; }
+.cap .q small { display: block; font-family: var(--text); font-size: .78rem; color: var(--soft); margin-top: .35rem; }
+.cap .c2 { opacity: 0; pointer-events: none; font-size: .98rem; }
+.cap .c2.live { pointer-events: auto; }
+.btn { display: inline-block; margin: .55rem .3rem 0; padding: .3rem 1rem .25rem; font-family: var(--hand); font-size: 1.35rem; line-height: 1.2; text-decoration: none; color: var(--ink); background: var(--b2); border: 2.5px solid var(--ink); border-radius: 14px 10px 16px 9px / 10px 15px 9px 14px; }
+.btn:hover { background: var(--b3); }
+.btn.pink { background: var(--b3); }
+.btn.white { background: #fff; }
+@media (min-width: 900px) {
+  .frame { left: auto; right: 9vw; top: 50%; transform: translateY(-50%); width: calc((100svh - 40px) * .645); }
+  .cap { left: 7vw; right: auto; width: min(30rem, 38vw); top: 50%; bottom: auto; height: 220px; transform: translateY(-50%); text-align: left; }
+  .cap .q { font-size: 2.6rem; }
+  .cap .c2 { font-size: 1.15rem; }
+}
+
+/* ---------- the six books, each on its own cover colour ---------- */
+.books h2, .diary h2, .signed h2, .milo h2, .fair h2 { font-size: clamp(2.8rem, 10vw, 4.6rem); }
+.books { padding: clamp(3rem, 8vw, 6rem) 0 0; }
+.books > header { padding: 0 var(--gut) 2rem; max-width: 46rem; }
+.books > header p { margin: .6rem 0 0; color: var(--soft); }
+.bk { display: grid; grid-template-columns: 40% 1fr; gap: 1.2rem; align-items: center; padding: 2.2rem var(--gut); }
+.bk img { border: 2px solid var(--ink); }
+.bk .n { font-weight: 700; font-size: .78rem; letter-spacing: .3em; }
+.bk h3 { font-size: 2.4rem; margin: .2rem 0 .4rem; }
+.bk p { margin: 0; font-size: 1rem; }
+.bk1 { background: var(--b1); color: #fff; } .bk2 { background: var(--b2); } .bk3 { background: var(--b3); } .bk4 { background: var(--b4); } .bk5 { background: var(--b5); color: #dfe8f3; } .bk6 { background: #fff; border-bottom: 2px solid var(--ink); }
+.bk .new { display: inline-block; font-family: var(--hand); font-size: 1.3rem; color: var(--rasp); transform: rotate(-4deg); }
+@media (min-width: 900px) {
+  .shelf { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .bk { grid-template-columns: 1fr; padding: 2.4rem 2.4rem 2.8rem; align-content: start; }
+  .bk img { width: 62%; }
+}
+
+/* ---------- Aubrey's diary ---------- */
+.diary { padding: clamp(3.5rem, 9vw, 6.5rem) var(--gut); display: grid; gap: 2rem; }
+.diary .lede { color: var(--soft); max-width: 36rem; margin: .7rem 0 0; }
+.page { background: #fff repeating-linear-gradient(#fff 0 2.05rem, #b8d4e3 2.05rem calc(2.05rem + 1px)); border: 2px solid var(--ink); border-radius: 4px; padding: .5rem 1.2rem 1rem 3rem; position: relative; max-width: 40rem; }
+.page::before { content: ""; position: absolute; left: 2rem; top: 0; bottom: 0; border-left: 2px solid var(--rasp); opacity: .6; }
+.page dl { margin: 0; font-family: var(--hand); font-size: 1.45rem; line-height: 2.05rem; }
+.page dt { color: var(--rasp); margin-top: 2.05rem; }
+.page dt:first-child { margin-top: 0; }
+.page dd { margin: 0; }
+.diary .sign { font-family: var(--hand); font-size: 1.4rem; margin-top: .6rem; }
+@media (min-width: 900px) { .diary { grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start; } }
+
+/* ---------- signed copies ---------- */
+.signed { background: var(--b4); padding: clamp(3.5rem, 9vw, 6.5rem) var(--gut); display: grid; gap: 2rem; }
+.signed img { border: 2px solid var(--ink); }
+.signed p { max-width: 34rem; }
+.signed .quote { font-family: var(--hand); font-size: 1.8rem; line-height: 1.2; }
+@media (min-width: 900px) { .signed { grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; } }
+
+.milo { padding: clamp(3.5rem, 9vw, 6.5rem) var(--gut); display: grid; gap: 2rem; }
+.milo img { max-width: 260px; }
+.milo p { max-width: 36rem; }
+.milo .find a { margin-right: 1rem; }
+@media (min-width: 900px) { .milo { grid-template-columns: 300px 1fr; gap: 4rem; align-items: center; } }
+
+.fair { background: var(--b3); padding: clamp(3.5rem, 9vw, 6rem) var(--gut); text-align: center; border-top: 2px solid var(--ink); }
+.fair .tbl { font-family: var(--hand); font-size: clamp(5rem, 24vw, 9rem); line-height: 1; margin: .6rem 0 0; color: var(--ink); }
+.fair p { max-width: 32rem; margin: .4rem auto; }
+footer { background: var(--ink); color: #ccc; text-align: center; font-size: .85rem; padding: 1.2rem var(--gut) 6rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+  .stage { position: relative; height: 100svh; }
+  .rule { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="strip">A homepage idea made by Sparsh Saini for Milo McGivern. Not their official site.</div>
+<div class="rule" aria-label="Tales from Animaux">
+  <span class="t">Tales from Animaux</span>
+  <nav><a href="#b1" aria-label="Book 1">1</a><a href="#b2" aria-label="Book 2">2</a><a href="#b3" aria-label="Book 3">3</a><a href="#b4" aria-label="Book 4">4</a><a href="#b5" aria-label="Book 5">5</a><a href="#b6" aria-label="Book 6">6</a><a class="d" href="#diary">diary</a><a class="d" href="#fair">S19</a></nav>
+</div>
+
+<main>
+<section class="hero" id="top" aria-label="Who's There?">
+  <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Who's There? by Milo McGivern, book 6 of the Tales from Animaux</h1>
+  <div class="stage">
+    <div class="frame">
+      <div class="art">
+        <div class="neck"><img class="aubrey" src="img/aubrey.webp" alt="" width="225" height="360"></div>
+        <img class="plate" src="img/plate.webp" alt="The cover of Who's There?: a girl in pink pyjamas sits with Clifford the platypus and Walli the hog, while Aubrey the turkey peers over her shoulder" width="1000" height="1551">
+        <div class="write"><div class="in"><img class="title" src="img/title.webp" alt="" width="688" height="154"></div></div>
+      </div>
+    </div>
+    <div class="cap">
+      <p class="c1 q">Who's there?<small>Keep scrolling. Someone is.</small></p>
+      <p class="c2"><span class="q" style="font-size:1.5em">Aubrey. Of course.</span><br>Book 6 of the Tales from Animaux, out February 2026.<br><a class="btn" href="https://www.milomcgivern.com/product-page/who-s-there">Buy from Milo</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="books" id="books">
+  <header>
+    <h2>Six books, thirty tales</h2>
+    <p>At the very edge of the world is the mysterious, undiscovered Island of Animaux, full of the strangest creatures having crazy, mad, funny adventures. Aubrey the Turkey plans his next dastardly scheme. Clifford Platypus and Walli Hog try to keep an eye on him. For readers aged 8 to 12, five tales in every book.</p>
+  </header>
+  <div class="shelf">
+    <article class="bk bk1" id="b1"><img src="img/b1.jpg" alt="The Island of Animaux cover" width="420" height="606" loading="lazy"><div><span class="n">1</span><h3>The Island of Animaux</h3><p>Where it all starts. Meet Aubrey, Clifford and Walli.</p><a class="btn white" href="https://www.milomcgivern.com/product-page/the-island-of-animaux">Signed copy</a></div></article>
+    <article class="bk bk2" id="b2"><img src="img/b2.jpg" alt="Monsieur Le Chef cover" width="420" height="638" loading="lazy"><div><span class="n">2</span><h3>Monsieur Le Chef</h3><p>More outrageous, hilarious tales of the scheming Aubrey and his despairing friends.</p><a class="btn pink" href="https://www.milomcgivern.com/product-page/monsieur-le-chef">Signed copy</a></div></article>
+    <article class="bk bk3" id="b3"><img src="img/b3.jpg" alt="A Surprise Party cover" width="420" height="638" loading="lazy"><div><span class="n">3</span><h3>A Surprise Party</h3><p>Parties, dentists, witches and so much more.</p><a class="btn" href="https://www.milomcgivern.com/product-page/a-surprise-party">Signed copy</a></div></article>
+    <article class="bk bk4" id="b4"><img src="img/b4.jpg" alt="Coffee and Ice Cream cover" width="420" height="637" loading="lazy"><div><span class="n">4</span><h3>Coffee and Ice Cream</h3><p>Trips to the moon, magic shows, swimming adventures and so much more.</p><a class="btn pink" href="https://www.milomcgivern.com/product-page/coffee-and-ice-cream">Signed copy</a></div></article>
+    <article class="bk bk5" id="b5"><img src="img/b5.jpg" alt="The Other Side cover" width="420" height="638" loading="lazy"><div><span class="n">5</span><h3>The Other Side</h3><p>The magical Island of Animaux returns, and Aubrey has a top hat and a wand.</p><a class="btn" href="https://www.milomcgivern.com/product-page/the-other-side">Buy from Milo</a></div></article>
+    <article class="bk bk6" id="b6"><img src="img/b6.jpg" alt="Who's There? cover" width="420" height="651" loading="lazy"><div><span class="new">new!</span><span class="n"> 6</span><h3>Who's There?</h3><p>The latest five tales. More weird and wonderful adventures from the Island of Animaux.</p><a class="btn pink" href="https://www.milomcgivern.com/product-page/who-s-there">Buy from Milo</a></div></article>
+  </div>
+</section>
+
+<section class="diary" id="diary">
+  <div>
+    <h2>Aubrey's diary</h2>
+    <p class="lede">Aubrey keeps a diary on Milo's website. He is not a reliable narrator. A few real entries:</p>
+  </div>
+  <div class="page">
+    <dl>
+      <dt>Tuesday</dt><dd>I saw on the Turkeynet that a people-creature called Milo has a new book out. And it's about this island and me! How is that possible? And where are my royalties?</dd>
+      <dt>Monday</dt><dd>I had acorns on toast for my breakfast and some gooseberry juice to wash it down. Delicious.</dd>
+      <dt>Tuesday</dt><dd>Where have my cowboy boots gone? I left them by the armchair and they have vanished. I bet Clifford has taken them. Naughty platypus.</dd>
+      <dt>Sunday</dt><dd>I'm such a handsome, clever turkey.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="signed" id="signed">
+  <img src="img/signed.jpg" alt="Paperbacks of the first four Tales from Animaux books" width="890" height="1000" loading="lazy">
+  <div>
+    <h2>Signed, with a bookmark</h2>
+    <p class="quote">"If you buy it from this site I will sign it and also add a very nice bookmark!"</p>
+    <p>That's Milo on his own shop page. Order there and he signs the book. The ebooks are on Amazon, Kobo and Barnes &amp; Noble.</p>
+    <a class="btn white" href="https://www.milomcgivern.com/shop">Go to the shop</a>
+  </div>
+</section>
+
+<section class="milo" id="milo">
+  <img src="img/milo.jpg" alt="A caricature of Milo McGivern in glasses" width="594" height="900" loading="lazy">
+  <div>
+    <h2>Milo</h2>
+    <p>For the past five years Milo has been writing stories about an astonishing place at the edge of the world. Yuliya Somina draws them. Readers send in their own drawings of Clifford.</p>
+    <p>He calls himself a writer on a mission, and promises some darker, deadlier tales later on, and an introduction to the strange world of Spengle S.</p>
+    <p class="find"><a href="https://www.instagram.com/milomcgivern2022/">Instagram</a><a href="http://twitter.com/McgivernMilo">X</a><a href="http://www.facebook.com/milo.mcgivern.75">Facebook</a><a href="mailto:info@milomcgivern.com">Email</a></p>
+  </div>
+</section>
+
+<section class="fair" id="fair">
+  <h2>Come and meet him</h2>
+  <p class="tbl">S19</p>
+  <p><b>Sunday 22 November</b>, the Oxford Indie Book Fair, Examination Schools, High Street, Oxford.</p>
+  <p>"I am delighted to be returning to the Oxford Indie Book Fair and look forward to meeting you."</p>
+</section>
+</main>
+<footer>A mockup made by Sparsh Saini for Milo McGivern. Not affiliated, not live.</footer>
+
+<script>
+(() => {
+  // who's there? the title is written on, then Aubrey stretches his neck up out of his feathers
+  // and leans over the girl's shoulder
+  const hero = document.querySelector('.hero'), q = s => hero.querySelector(s);
+  const aub = q('.aubrey'), win = q('.write'), wIn = q('.write .in'), c1 = q('.c1'), c2 = q('.c2');
+  const rule = document.querySelector('.rule');
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const io = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const back = t => { const c = 1.9; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    let p;
+    if (still.matches) p = 1;
+    else { const r = hero.getBoundingClientRect(); p = clamp(-r.top / (hero.offsetHeight - innerHeight)); }
+    // the brush title: a window opening left to right (window moves right, the lettering is held still)
+    const w = io(clamp((p - .04) / .3));
+    win.style.transform = `translate3d(${(-100 * (1 - w)).toFixed(2)}%,0,0)`;
+    wIn.style.transform = `translate3d(${(100 * (1 - w)).toFixed(2)}%,0,0)`;
+    // the neck: up out of the feathers with a little overshoot, a peer left, then settle
+    const a = clamp((p - .4) / .36);
+    const y = 100 * (1 - back(a));
+    const tilt = Math.sin(clamp((p - .62) / .2) * Math.PI) * -7;
+    aub.style.transform = `translate3d(0,${y.toFixed(2)}%,0) rotate(${tilt.toFixed(2)}deg)`;
+    const k = clamp((p - .8) / .12);
+    c1.style.opacity = (1 - k).toFixed(3);
+    c2.style.opacity = k.toFixed(3);
+    c2.classList.toggle('live', k > .5);
+    rule.classList.toggle('on', hero.getBoundingClientRect().bottom < innerHeight * .6);
+  }
+  const go = () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } };
+  addEventListener('scroll', go, { passive: true });
+  addEventListener('resize', go);
+  still.addEventListener('change', go);
+  frame();
+})();
+</script>
+</body>
+</html>
